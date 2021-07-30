@@ -1,29 +1,47 @@
 package lotto.domain;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lotto {
 
-    private Set<Integer> numbers;
+    public static final int MIN_BALL_NUMBER = 1;
+    public static final int MAX_BALL_NUMBER = 45;
+    private static int NUMBER_COUNT = 6;
+    private static List<Integer> numberBallList = initBallList();
+
+    public Set<Integer> numbers;
+
+    public Lotto() {
+        this(numberBallList.subList(0, NUMBER_COUNT));
+        Collections.shuffle(numberBallList);
+    }
 
     public Lotto(List<Integer> numbers) {
         this.numbers = numbers.stream()
                 .filter(this::validNumberRange)
-                .collect(Collectors.toSet());
+                .sorted()
+                .collect(Collectors.toCollection(LinkedHashSet::new));
 
         validNumberCount();
     }
 
+    private static List<Integer> initBallList() {
+        List<Integer> initBallList = new ArrayList<>();
+        for (int i = MIN_BALL_NUMBER; i <= MAX_BALL_NUMBER; i++) {
+            initBallList.add(i);
+        }
+        Collections.shuffle(initBallList);
+        return initBallList;
+    }
+
     private boolean validNumberRange(int number) {
-        return number > 0 && number < 46;
+        return number >= MIN_BALL_NUMBER && number <= MAX_BALL_NUMBER;
     }
 
     private void validNumberCount() {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또는 중복되지 않는 6개의  숫자를 가져야합니다.");
+        if (numbers.size() != NUMBER_COUNT) {
+            throw new IllegalArgumentException("로또는 중복되지 않는 " + NUMBER_COUNT + "개의 숫자를 가져야합니다.");
         }
     }
 

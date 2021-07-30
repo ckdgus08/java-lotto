@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoTest {
@@ -14,7 +13,6 @@ public class LottoTest {
     @DisplayName("로또를 생성한다.")
     void create() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        assertThat(lotto).isEqualTo(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
     }
 
     @Test
@@ -35,5 +33,11 @@ public class LottoTest {
 
         assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("자동으로 로또를 생성한다.")
+    void createRandom() {
+        Lotto lotto = new Lotto();
     }
 }
