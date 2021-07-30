@@ -7,7 +7,7 @@ public class Lotto {
 
     private static int BALL_COUNT = 6;
 
-    public Set<Ball> balls = new HashSet<>();
+    private Set<Ball> balls = new HashSet<>();
 
     public Lotto() {
         while (!hasBallsCount(BALL_COUNT)) {
@@ -30,6 +30,11 @@ public class Lotto {
         if (!hasBallsCount(BALL_COUNT)) {
             throw new IllegalArgumentException("로또는 중복되지 않는 " + BALL_COUNT + "개의 숫자를 가져야합니다.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return balls.toString();
     }
 
     @Override

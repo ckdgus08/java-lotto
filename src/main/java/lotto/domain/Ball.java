@@ -1,6 +1,9 @@
 package lotto.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public class Ball implements Comparable<Ball> {
 
@@ -37,6 +40,11 @@ public class Ball implements Comparable<Ball> {
         if (!(number >= MIN_BALL_NUMBER && number <= MAX_BALL_NUMBER)) {
             throw new IllegalArgumentException("로또 번호는 " + MIN_BALL_NUMBER + " ~ " + MAX_BALL_NUMBER + "사이만 허용됩니다.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
     }
 
     @Override

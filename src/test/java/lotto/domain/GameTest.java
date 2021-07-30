@@ -16,8 +16,8 @@ public class GameTest {
             new Ball(6)));
 
     @Test
-    @DisplayName("게임 횟수와, 지난 당첨번호를 입력받아 게임을 생성한다.")
+    @DisplayName("게임 횟수를 입력받아 게임을 생성한다.")
     void create() {
-        Game game = new Game(14, previousLotto);
+        Game game = new Game(14);
     }
 }

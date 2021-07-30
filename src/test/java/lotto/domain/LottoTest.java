@@ -61,4 +61,17 @@ public class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("로또 번호 toString")
+    void toStringTest() {
+        Lotto result = new Lotto(Arrays.asList(
+                new Ball(1),
+                new Ball(2),
+                new Ball(3),
+                new Ball(4),
+                new Ball(5),
+                new Ball(6)));
+        assertThat(result.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
+
 }
