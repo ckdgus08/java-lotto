@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Game {
 
-        private List<Lotto> lottos = new ArrayList<>();
-        private Lotto previousNumber;
+    private final List<Lotto> lottos = new ArrayList<>();
+    private Lotto previousLotto;
 
-        public Game(int count, List<Integer> previousNumberList) {
-
-                for (int i = 0; i < count; i++) {
-
-                }
+    public Game(int count, Lotto previousLotto) {
+        for (int i = 0; i < count; i++) {
+            lottos.add(new Lotto());
         }
+        this.previousLotto = previousLotto;
+    }
 }
