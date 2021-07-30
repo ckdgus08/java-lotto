@@ -16,6 +16,12 @@ public class Game {
         }
     }
 
+    public int getCountOfSameNumberLotto(int sameCount) {
+        return (int) lottos.stream()
+                .filter(lotto -> lotto.getSameNumberCount(previousLotto) == sameCount)
+                .count();
+    }
+
     public int getLottoCount() {
         return lottos.size();
     }
