@@ -19,7 +19,7 @@ public class Main {
         Lotto lotto = InputView.inputPreviousLottoNumbers();
         game.setPreviousLotto(lotto);
 
-        ResultView.printResult();
+        ResultView.printResult(game);
 
     }
 }

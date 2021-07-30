@@ -7,13 +7,7 @@ public class Lotto {
 
     private static int BALL_COUNT = 6;
 
-    private Set<Ball> balls = new HashSet<>();
-
-    public Lotto() {
-        while (!hasBallsCount(BALL_COUNT)) {
-            balls.add(new Ball());
-        }
-    }
+    private Set<Ball> balls;
 
     public Lotto(List<Ball> balls) {
         this.balls = balls.stream()

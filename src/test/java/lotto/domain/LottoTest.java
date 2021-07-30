@@ -25,13 +25,6 @@ public class LottoTest {
     }
 
     @Test
-    @DisplayName("자동으로 로또를 생성한다.")
-    void createRandom() {
-        Lotto result = new Lotto();
-        assertThat(result.hasBallsCount(6)).isTrue();
-    }
-
-    @Test
     @DisplayName("로또 넘버가 6개가 아니거나, 중복되면 에러가 발생한다.")
     void validLottoNumberCount() {
         assertThatThrownBy(() -> new Lotto(Arrays.asList(
