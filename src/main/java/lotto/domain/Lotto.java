@@ -6,31 +6,18 @@ import java.util.stream.Collectors;
 public class Lotto {
 
     private static int BALL_COUNT = 6;
-    private static List<Integer> numberBallList = initBallList();
 
     public Set<Ball> balls;
 
     public Lotto() {
-        this(numberBallList.subList(0, BALL_COUNT));
-        Collections.shuffle(numberBallList);
     }
 
     public Lotto(List<Integer> numbers) {
         this.balls = numbers.stream()
-                .filter(this::validNumberRange)
                 .sorted()
                 .collect(Collectors.toCollection(LinkedHashSet::new));
 
         validNumberCount();
-    }
-
-    private static List<Integer> initBallList() {
-        List<Integer> initBallList = new ArrayList<>();
-        for (int i = MIN_BALL_NUMBER; i <= MAX_BALL_NUMBER; i++) {
-            initBallList.add(i);
-        }
-        Collections.shuffle(initBallList);
-        return initBallList;
     }
 
     private void validNumberCount() {

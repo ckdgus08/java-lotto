@@ -26,4 +26,10 @@ public class BallTest {
         assertThatThrownBy(() -> new Ball(46))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("랜덤 볼 생성")
+    void createRandomBall() {
+        Ball ball = new Ball();
+    }
 }
