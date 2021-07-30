@@ -13,10 +13,18 @@ public class Lotto {
         this.numbers = numbers.stream()
                 .filter(this::validNumberRange)
                 .collect(Collectors.toSet());
+
+        validNumberCount();
     }
 
     private boolean validNumberRange(int number) {
         return number > 0 && number < 46;
+    }
+
+    private void validNumberCount() {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("로또는 중복되지 않는 6개의  숫자를 가져야합니다.");
+        }
     }
 
     @Override
