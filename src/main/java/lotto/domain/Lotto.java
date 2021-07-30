@@ -22,6 +22,16 @@ public class Lotto {
         validNumberCount();
     }
 
+    public int getSameNumberCount(Lotto previousLotto) {
+        return (int) balls.stream()
+                .filter(previousLotto::containsBall)
+                .count();
+    }
+
+    private boolean containsBall(Ball ball) {
+        return balls.contains(ball);
+    }
+
     public boolean hasBallsCount(int size) {
         return balls.size() == size;
     }

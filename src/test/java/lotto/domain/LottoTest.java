@@ -10,17 +10,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoTest {
 
+    Lotto lotto = new Lotto(Arrays.asList(
+            new Ball(1),
+            new Ball(2),
+            new Ball(3),
+            new Ball(4),
+            new Ball(5),
+            new Ball(6)));
+
     @Test
     @DisplayName("로또를 생성한다.")
     void create() {
-        Lotto result = new Lotto(Arrays.asList(
-                new Ball(1),
-                new Ball(2),
-                new Ball(3),
-                new Ball(4),
-                new Ball(5),
-                new Ball(6)));
-        assertThat(result.hasBallsCount(6)).isTrue();
+        assertThat(lotto.hasBallsCount(6)).isTrue();
     }
 
     @Test
@@ -64,14 +65,19 @@ public class LottoTest {
     @Test
     @DisplayName("로또 번호 toString")
     void toStringTest() {
-        Lotto result = new Lotto(Arrays.asList(
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
+
+    @Test
+    @DisplayName("로또 같은 숫자 갯수를 구한다.")
+    void sameNumberCount() {
+        Lotto previousLotto = new Lotto(Arrays.asList(
                 new Ball(1),
                 new Ball(2),
                 new Ball(3),
-                new Ball(4),
-                new Ball(5),
-                new Ball(6)));
-        assertThat(result.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+                new Ball(45),
+                new Ball(44),
+                new Ball(43)));
+        assertThat(lotto.getSameNumberCount(previousLotto)).isEqualTo(3);
     }
-
 }
