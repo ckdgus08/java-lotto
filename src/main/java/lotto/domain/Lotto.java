@@ -7,21 +7,27 @@ public class Lotto {
 
     private static int BALL_COUNT = 6;
 
-    public Set<Ball> balls;
+    public Set<Ball> balls = new HashSet<>();
 
     public Lotto() {
+        while (!hasBallsCount(BALL_COUNT)) {
+            balls.add(new Ball());
+        }
     }
 
-    public Lotto(List<Integer> numbers) {
-        this.balls = numbers.stream()
+    public Lotto(List<Ball> balls) {
+        this.balls = balls.stream()
                 .sorted()
                 .collect(Collectors.toCollection(LinkedHashSet::new));
-
         validNumberCount();
     }
 
+    public boolean hasBallsCount(int size) {
+        return balls.size() == size;
+    }
+
     private void validNumberCount() {
-        if (balls.size() != BALL_COUNT) {
+        if (!hasBallsCount(BALL_COUNT)) {
             throw new IllegalArgumentException("로또는 중복되지 않는 " + BALL_COUNT + "개의 숫자를 가져야합니다.");
         }
     }

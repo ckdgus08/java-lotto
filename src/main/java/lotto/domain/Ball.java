@@ -1,17 +1,36 @@
 package lotto.domain;
 
-import java.util.Objects;
+import java.util.*;
 
-public class Ball {
+public class Ball implements Comparable<Ball> {
 
     public static final int MIN_BALL_NUMBER = 1;
     public static final int MAX_BALL_NUMBER = 45;
+    private static final List<Integer> numberBallList = initBallList();
 
-    private int number;
+    private final int number;
+
+    public Ball() {
+        this(getRandomNumber());
+        Collections.shuffle(numberBallList);
+    }
 
     public Ball(int number) {
         validNumberRange(number);
         this.number = number;
+    }
+
+    private static int getRandomNumber() {
+        return numberBallList.get(0);
+    }
+
+    private static List<Integer> initBallList() {
+        List<Integer> initBallList = new ArrayList<>();
+        for (int i = MIN_BALL_NUMBER; i <= MAX_BALL_NUMBER; i++) {
+            initBallList.add(i);
+        }
+        Collections.shuffle(initBallList);
+        return initBallList;
     }
 
     private void validNumberRange(int number) {
@@ -31,5 +50,10 @@ public class Ball {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    @Override
+    public int compareTo(Ball o) {
+        return number - o.number;
     }
 }
